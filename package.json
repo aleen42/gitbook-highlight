@@ -1,8 +1,8 @@
 {
     "name": "gitbook-plugin-highlight",
-    "description": "Code highlighting for GitBook",
+    "description": "Default code highlighter for GitBook",
     "main": "index.js",
-    "version": "0.0.0",
+    "version": "2.0.3",
     "engines": {
         "gitbook": ">=2.4.0"
     },
@@ -16,12 +16,15 @@
         "url": "https://github.com/GitbookIO/plugin-highlight/issues"
     },
     "dependencies": {
-        "highlight.js": "8.8.0"
+        "highlight.js": "9.8.0"
     },
     "devDependencies": {
-        "less": "2.5.1"
+        "less": "2.7.1",
+        "mocha":"3.2.0",
+        "gitbook-tester":"1.4.3"
     },
     "scripts": {
-        "prepublish": "lessc ./less/website.less > ./css/website.css; lessc ./less/ebook.less > ./css/ebook.css"
+        "prepublish": "mkdir -p css && lessc ./less/website.less > ./css/website.css; lessc ./less/ebook.less > ./css/ebook.css",
+        "test": "mocha test/"
     }
 }

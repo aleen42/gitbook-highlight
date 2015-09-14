@@ -17,7 +17,10 @@ function normalize(lang) {
 }
 
 function highlight(lang, code) {
-    if(!lang) return code;
+    if(!lang) return {
+        body: code,
+        html: false
+    };
 
     // Normalize lang
     lang = normalize(lang);
@@ -26,7 +29,10 @@ function highlight(lang, code) {
         return hljs.highlight(lang, code).value;
     } catch(e) { }
 
-    return code;
+    return {
+        body: code,
+        html: false
+    };
 }
 
 
@@ -45,7 +51,7 @@ module.exports = {
     },
     blocks: {
         code: function(block) {
-            return highlight(block.kwargs.lang, block.content);
+            return highlight(block.kwargs.language, block.body);
         }
     }
 };
